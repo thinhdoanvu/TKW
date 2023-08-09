@@ -142,3 +142,10 @@ C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\obj\Debug\ThoiTrang.csp
 C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\obj\Debug\ThoiTrang.csproj.CopyComplete
 C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\obj\Debug\ThoiTrang.dll
 C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\obj\Debug\ThoiTrang.pdb
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\EntityFramework.dll
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\EntityFramework.SqlServer.dll
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\EntityFramework.xml
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\EntityFramework.SqlServer.xml
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\MyClass.dll
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\MyClass.pdb
+C:\Users\203H231\Documents\TKW\HoDienLoi290009\ThoiTrang\bin\MyClass.dll.config
