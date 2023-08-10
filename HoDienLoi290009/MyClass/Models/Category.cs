@@ -23,6 +23,8 @@ namespace MyClass.Models
         
         [Required(ErrorMessage ="Tên loại sản phẩm không được để trống")]
         [StringLength(200)]
+
+        //[Display(Name = "tên danh mục")]//có thể chèn dòng này để thay đổi tên trường thành tên của mình đặt
         public string Name { get; set; }//bắt buộc
 
         public string Slug { get; set; }//không bắt buộc do Slug được sinh ra từ name

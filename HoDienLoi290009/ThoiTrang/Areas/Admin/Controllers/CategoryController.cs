@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyClass.Models;
+using MyClass.DAO;
 
 namespace ThoiTrang.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private MyDBContext db = new MyDBContext();
 
+        CategoryDAO categoryDAO = new CategoryDAO();
         // GET: Admin/Category
         public ActionResult Index()
         {
-            return View(db.Categorys.ToList());
+            return View(categoryDAO.getList("Index"));
         }
 
         // GET: Admin/Category/Details/5
@@ -27,7 +28,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categorys.Find(id);
+            Category category = categoryDAO.getRow(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -50,8 +51,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categorys.Add(category);
-                db.SaveChanges();
+                categoryDAO.Insert(category);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +65,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categorys.Find(id);
+            Category category = categoryDAO.getRow(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -82,8 +82,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                categoryDAO.Update(category);
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -96,7 +95,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categorys.Find(id);
+            Category category = categoryDAO.getRow(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -109,19 +108,18 @@ namespace ThoiTrang.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categorys.Find(id);
-            db.Categorys.Remove(category);
-            db.SaveChanges();
+            Category category = categoryDAO.getRow(id);
+            categoryDAO.Delete(category);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

@@ -48,6 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\CategoryDAO.cs" />
+    <Compile Include="DAO\ConfigDAO.cs" />
+    <Compile Include="DAO\ContactDAO.cs" />
+    <Compile Include="DAO\LinkDAO.cs" />
+    <Compile Include="DAO\MenuDAO.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\OrderDetailDAO.cs" />
+    <Compile Include="DAO\PostDAO.cs" />
+    <Compile Include="DAO\ProductDAO.cs" />
+    <Compile Include="DAO\SliderDAO.cs" />
+    <Compile Include="DAO\SupplierDAO.cs" />
+    <Compile Include="DAO\TopicDAO.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -77,8 +90,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
