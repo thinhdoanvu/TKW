@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyClass.Models;
 using MyClass.DAO;
+using ThoiTrang.Library;
 
 namespace ThoiTrang.Areas.Admin.Controllers
 {
@@ -39,6 +40,8 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // GET: Admin/Category/Create
         public ActionResult Create()
         {
+            ViewBag.ListCat = new SelectList(categoryDAO.getList("Index"), "Id", "Name",0);
+            ViewBag.ListOrder = new SelectList(categoryDAO.getList("Index"), "Order", "Name", 0);
             return View();
         }
 
@@ -47,7 +50,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Slug,ParentId,Order,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Category category)
+        public ActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,8 @@ namespace ThoiTrang.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ListCat = new SelectList(categoryDAO.getList("Index"), "Id", "Name", 0);
+            ViewBag.ListOrder = new SelectList(categoryDAO.getList("Index"), "Order", "Name", 0);
             return View(category);
         }
 
@@ -82,6 +87,14 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Xử lý thêm thông tin tự động
+                category.Slug = Xstring.Str_Slug(category.Name);
+
+                if (category.ParentId == null)
+                {
+                    category.ParentId = 0;
+                }
+
                 categoryDAO.Update(category);
                 return RedirectToAction("Index");
             }

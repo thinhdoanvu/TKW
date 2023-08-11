@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<MyClass.Models.Category>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tất cả danh mục";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -17,10 +17,12 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        <strong>DANH SÁCH LOẠI SẢN PHẨM</strong>
+                        <strong class="text-danger text-uppercase">TẤT CẢ DANH MỤC SẢN PHẨM</strong>
                     </div>
                     <div class="col-md-6 text-right">
-                        @Html.ActionLink("Create New", "Create")
+                        <a href="@Url.Action("Create","Category")" class="btn-sm btn-success"> <i class="fa fa-plus"></i>Thêm</a>
+                        <a href="@Url.Action("Thrash","Category")" class="btn-sm btn-danger"> <i class="fa fa-trash"></i>Thùng rác</a>
+                        @*@Html.ActionLink("Create New", "Create")*@
                     </div>
                 </div>
             </div>
@@ -28,6 +30,9 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
+                            <th>
+                                #
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
@@ -49,22 +54,24 @@
                             @*<th>
                                     @Html.DisplayNameFor(model => model.CreatedBy)
                                 </th>*@
-                            <th>
+                            @*<th>
                                 @Html.DisplayNameFor(model => model.CreatedAt)
-                            </th>
+                            </th>*@
                             @*<th>
                                     @Html.DisplayNameFor(model => model.UpdateBy)
                                 </th>*@
-                            <th>
+                            @*<th>
                                 @Html.DisplayNameFor(model => model.UpdateAt)
-                            </th>
+                            </th>*@
                             <th>
                                 @Html.DisplayNameFor(model => model.Status)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Id)
                             </th>
-                            <th></th>
+                            <th>
+                                Chức năng
+                            </th>
                         </tr>
                     </thead>
 
@@ -72,6 +79,9 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>
+                                    <input type="checkbox" name = "checkId" value=""/>
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)
                                 </td>
@@ -93,15 +103,15 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.CreatedBy)
                                     </td>*@
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.CreatedAt)
-                                </td>
+                                </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.UpdateBy)
                                     </td>*@
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.UpdateAt)
-                                </td>
+                                </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Status)
                                 </td>
