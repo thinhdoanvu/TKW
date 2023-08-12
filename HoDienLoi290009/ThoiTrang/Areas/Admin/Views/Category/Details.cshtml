@@ -19,8 +19,10 @@
                         <strong>CHI TIẾT DANH MỤC SẢN PHẨM</strong>
                     </div>
                     <div class="col-md-6 text-right">
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                        @Html.ActionLink("Back to List", "Index")
+                        <a href="@Url.Action("Edit","Category",  new { id = Model.Id })" class="btn-sm btn-success"> <i class="fa fa-edit"> Sửa</i></a>
+                        <a href="@Url.Action("Index","Category")" class="btn-sm btn-info"> <i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+                          @Html.ActionLink("Back to List", "Index")*@
                     </div>
                 </div>
             </div>
@@ -58,7 +60,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Status)
                             </th>
-                            
+
                         </tr>
                     </thead>
 

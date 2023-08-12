@@ -22,7 +22,8 @@
                             <strong>XÓA DANH MỤC SẢN PHẨM</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            @Html.ActionLink("Back to List", "Index")
+                            <a href="@Url.Action("Index","Category")" class="btn-sm btn-info"> <i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
+                           @* @Html.ActionLink("Back to List", "Index")*@
                         </div>
                     </div>
                 </div>
@@ -105,7 +106,8 @@
                         </table>
                     </div>
                     <div class="form-actions no-color">
-                        <input type="submit" value="Delete" class="btn btn-default" />
+                        <button class="btn-sm btn-danger" type="submit" name="Delete"> Xóa [Delete] <i class="fa fa-trash"></i> </button>
+                        @*<input type="submit" value="Delete" class="btn btn-default" />*@
                     </div>
                 </div>
                 <!-- /.card-body -->

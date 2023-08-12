@@ -54,7 +54,27 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Xử lý thêm thông tin tự động
+                category.Slug = Xstring.Str_Slug(category.Name);
+
+                if (category.ParentId == null)
+                {
+                    category.ParentId = 0;
+                }
+
+                if (category.Order == null)
+                {
+                    category.Order = 1;
+                }
+                else
+                {
+                    category.Order = category.Order + 1;
+                }
+
+                category.CreatedBy = Convert.ToInt32(Session["UserId"].ToString());
+                category.CreatedAt = DateTime.Now;
                 categoryDAO.Insert(category);
+                TempData["message"] = new Xmessage("success", "Thêm danh mục thành công");
                 return RedirectToAction("Index");
             }
 
@@ -87,15 +107,8 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Xử lý thêm thông tin tự động
-                category.Slug = Xstring.Str_Slug(category.Name);
-
-                if (category.ParentId == null)
-                {
-                    category.ParentId = 0;
-                }
-
                 categoryDAO.Update(category);
+                TempData["message"] = new Xmessage("success", "Cập nhật thành công");
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -123,7 +136,80 @@ namespace ThoiTrang.Areas.Admin.Controllers
         {
             Category category = categoryDAO.getRow(id);
             categoryDAO.Delete(category);
-            return RedirectToAction("Index");
+            TempData["message"] = new Xmessage("success", "Xóa danh mục thành công");
+            return RedirectToAction("Trash");//chuyển hướng về Trash
+        }
+
+        public ActionResult Status(int? id)
+        {
+            if (id == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mã loại sản phẩm không tồn tại");
+                return RedirectToAction("Index", "Category");
+            }
+            Category category = categoryDAO.getRow(id);
+            if (category == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mẫu tin không tồn tại");
+                return RedirectToAction("Index", "Category");
+            }
+            category.Status = (category.Status ==1)?2:1;
+            category.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+            category.UpdateAt = DateTime.Now;
+            categoryDAO.Update(category);
+            TempData["message"] = new Xmessage("success", "Cập nhật trạng thái thành công");
+            return RedirectToAction("Index", "Category");
+        }
+
+        //Xóa vào thùng rác
+        public ActionResult DelTrash(int? id)
+        {
+            if (id == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mã loại sản phẩm không tồn tại");
+                return RedirectToAction("Index", "Category");
+            }
+            Category category = categoryDAO.getRow(id);
+            if (category == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mẫu tin không tồn tại");
+                return RedirectToAction("Index", "Category");
+            }
+            category.Status = 0; //Trạng thái Trash = 0
+            category.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+            category.UpdateAt = DateTime.Now;
+            categoryDAO.Update(category);
+            TempData["message"] = new Xmessage("success", "Xóa vào thùng rác thành công");
+            return RedirectToAction("Index", "Category");
+        }
+
+        //Lục thùng rác
+        public ActionResult Trash(int? id)
+        {
+            return View(categoryDAO.getList("Trash"));
+        }
+
+
+        //Phục hồi từ thùng rác
+        public ActionResult Recover(int? id)
+        {
+            if (id == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mã loại sản phẩm không tồn tại");
+                return RedirectToAction("Trash", "Category");
+            }
+            Category category = categoryDAO.getRow(id);
+            if (category == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mẫu tin không tồn tại");
+                return RedirectToAction("Trash", "Category");
+            }
+            category.Status = 2; //Trạng thái Recover = 2
+            category.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+            category.UpdateAt = DateTime.Now;
+            categoryDAO.Update(category);
+            TempData["message"] = new Xmessage("success", "Phục hồi danh mục thành công");
+            return RedirectToAction("Trash", "Category");
         }
 
         //protected override void Dispose(bool disposing)

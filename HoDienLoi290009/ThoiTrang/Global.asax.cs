@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +13,11 @@ namespace ThoiTrang
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+        //phiên đăng nhập
+        protected void Session_Start()
+        {
+            Session["UserId"] = 1;
         }
     }
 }
