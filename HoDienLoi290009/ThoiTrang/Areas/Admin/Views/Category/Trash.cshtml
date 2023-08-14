@@ -5,6 +5,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+@section header {
+    <link href="~/Public/css/cdn.datatables.net_1.13.6_css_jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+@section footer {
+    <script src="~/Public/js/cdn.datatables.net_1.13.6_js_jquery.dataTables.min.js"></script>
+    <script>let table = new DataTable('#myTable');</script>
+}
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -27,7 +35,7 @@
             </div>
             <div class="card-body">
                 @Html.Partial("Message")
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="myTable">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 20px;"># </th>
