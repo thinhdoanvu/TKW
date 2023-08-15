@@ -114,6 +114,28 @@ namespace ThoiTrang.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        //Status
+        public ActionResult Status(int? id)
+        {
+            if (id == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mã loại sản phẩm không tồn tại");
+                return RedirectToAction("Index", "Product");
+            }
+            Product product = ProductDAO.getRow(id);
+            if (product == null)
+            {
+                TempData["message"] = new Xmessage("danger", "Mẫu tin không tồn tại");
+                return RedirectToAction("Index", "Product");
+            }
+            product.Status = (product.Status == 1) ? 2 : 1;
+            product.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+            product.UpdateAt = DateTime.Now;
+            ProductDAO.Update(product);
+            TempData["message"] = new Xmessage("success", "Cập nhật trạng thái thành công");
+            return RedirectToAction("Index", "Product");
+        }
+
         //Làm thêm//
         //Xóa vào thùng rác
         public ActionResult DelTrash(int? id)

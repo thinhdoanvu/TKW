@@ -2125,6 +2125,7 @@
     <Content Include="Areas\Admin\Views\Orderdetail\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Orderdetail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Orderdetail\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Trash.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutSite.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
