@@ -16,6 +16,9 @@ namespace ThoiTrang.Areas.Admin.Controllers
     {
 
         CategoryDAO categoryDAO = new CategoryDAO();
+        //them phan LỊNK
+        LinkDAO linkDAO = new LinkDAO();
+        
         // GET: Admin/Category
         public ActionResult Index()
         {
@@ -73,7 +76,17 @@ namespace ThoiTrang.Areas.Admin.Controllers
 
                 category.CreatedBy = Convert.ToInt32(Session["UserId"].ToString());
                 category.CreatedAt = DateTime.Now;
-                categoryDAO.Insert(category);
+                //sua them ngay 16-Aug, them duong link vao table Link
+                if(categoryDAO.Insert(category) == 1)
+                {
+                    ////tao ra link
+                    Link link = new Link();
+                    link.Slug = category.Slug;
+                    link.TableId = category.Id;
+                    link.Type = "category";
+                    linkDAO.Insert(link);
+                }
+                
                 TempData["message"] = new Xmessage("success", "Thêm danh mục thành công");
                 return RedirectToAction("Index");
             }
@@ -103,11 +116,39 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Slug,ParentId,Order,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Category category)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-                categoryDAO.Update(category);
+
+                //them phan nay vao 16-8-2023 chu truoc day khong co
+                category.Slug = Xstring.Str_Slug(category.Name);
+                if (category.ParentId == null)
+                {
+                    category.ParentId = 0;
+                }
+                if (category.Order == null)
+                {
+                    category.Order = 1;
+                }
+                else
+                {
+                    category.Order += 1;
+                }
+                category.CreatedBy = Convert.ToInt32(Session["UserId"].ToString());
+                category.CreatedAt = DateTime.Now;
+                
+                //sua them ngay 16-Aug, them duong link vao table Link
+                if (categoryDAO.Update(category) == 1)
+                {
+                    Link link = linkDAO.getRow(category.Id,"category");
+                    link.Slug = category.Slug;
+                    linkDAO.Update(link);
+                }
+                category.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+                category.UpdateAt = DateTime.Now;
+                //het phan moi bo sung
+               
                 TempData["message"] = new Xmessage("success", "Cập nhật thành công");
                 return RedirectToAction("Index");
             }
@@ -135,7 +176,16 @@ namespace ThoiTrang.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = categoryDAO.getRow(id);
-            categoryDAO.Delete(category);
+            //updata 16-8-2023
+            Link link = linkDAO.getRow(category.Id,"category");
+
+            if (categoryDAO.Delete(category) == 1)
+            {
+                linkDAO.Delete(link);
+            }
+            //sau khi xoa xong, thi  dong thoi cung xoa luon link
+            //updata 16-8-2023
+
             TempData["message"] = new Xmessage("success", "Xóa danh mục thành công");
             return RedirectToAction("Trash");//chuyển hướng về Trash
         }

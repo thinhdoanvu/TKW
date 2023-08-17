@@ -48,7 +48,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CatID,Name,Slug,Detail,Image,Price,PriceSale,Number,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Product product)
+        public ActionResult Create([Bind(Include = "Id,CatID,Name,Supplier,Slug,Detail,Image,Price,PriceSale,Number,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CatID,Name,Slug,Detail,Image,Price,PriceSale,Number,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,CatID,Name,Supplier,Slug,Detail,Image,Price,PriceSale,Number,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Product product)
         {
             if (ModelState.IsValid)
             {

@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 //Trường nào bắt buộc có dự liệu !=NULL:
 //Dữ liệu dạng String: mặc định là không bắt buộc (NULL), khi bắt buộc cần có [Required]
 //Int, Date, Time: mặc định là bắt buộc, khi không bắt buộc int?, datetime?
+//chu ý thiết kế CSDL giống vầy nhé
 
 namespace MyClass.Models
 {
@@ -19,17 +20,12 @@ namespace MyClass.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Tên link không được để trống")]
-        [StringLength(200)]
         public string Name { get; set; }//bắt buộc
 
-        [Required]
         public string Slug { get; set; }//không bắt buộc do Slug được sinh ra từ name
 
-        [Required]
-        public int TableId { get; set; }//bắt buộc, lấy từ bảng nào
+        public int? TableId { get; set; }//bắt buộc, lấy từ bảng nào
 
-        [Required]
-        public string Type { get; set; }//không bắt buộc, kiểu link
+       public string Type { get; set; }//không bắt buộc, kiểu link
     }
 }

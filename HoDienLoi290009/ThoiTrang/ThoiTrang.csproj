@@ -2014,6 +2014,7 @@
     <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LinkController.cs" />
     <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderdetailController.cs" />
@@ -2105,16 +2106,6 @@
     <Content Include="Areas\Admin\Views\Slider\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Supplier\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Supplier\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Supplier\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Topic\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Topic\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Topic\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Topic\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Topic\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\User\Details.cshtml" />
@@ -2126,6 +2117,23 @@
     <Content Include="Areas\Admin\Views\Orderdetail\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Orderdetail\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Link\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Link\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Link\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Link\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Link\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Topic\Trash.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Supplier\Trash.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutSite.cshtml" />
     <Content Include="Views\Site\Index.cshtml" />
@@ -2228,7 +2236,10 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Area\" />
     <Folder Include="Models\" />
+    <Folder Include="Public\images\posts\" />
     <Folder Include="Public\images\products\" />
+    <Folder Include="Public\images\sliders\" />
+    <Folder Include="Public\images\suppliers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MyClass\MyClass.csproj">

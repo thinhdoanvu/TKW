@@ -31,10 +31,10 @@ namespace MyClass.Models
         public int? Order { get; set; }//không bắt buộc để sắp xếp danh mục sản phẩm
 
         [Required]
-        public int MetaDesc { get; set; }//bắt buộc do là kiểu String
+        public string MetaDesc { get; set; }//bắt buộc do là kiểu String
 
         [Required]
-        public int MetaKey { get; set; }//bắt buộc do là kiểu String
+        public string MetaKey { get; set; }//bắt buộc do là kiểu String
 
         public int CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
 

@@ -24,35 +24,37 @@ namespace MyClass.Models
         [StringLength(200)]
         public string Name { get; set; }//bắt buộc
 
+        public string Img { get; set; }//bắt buộc
+
         public string Slug { get; set; }//không bắt buộc do Slug được sinh ra từ name
 
         public int? Order { get; set; }//không bắt buộc để sắp xếp danh mục sản phẩm
 
-        [Required]
+      
         public String Fullname { get; set; }//không bắt buộc do lấy dữ liệu từ bảng User
 
-        [Required]
+        
         public String Phone { get; set; }//không bắt buộc do lấy dữ liệu từ bảng User
 
-        [Required]
+     
         public String Email { get; set; }//không bắt buộc do lấy dữ liệu từ bảng User
 
         public String UrlSite { get; set; }//không bắt buộc
 
-        [Required]
-        public int MetaDesc { get; set; }//bắt buộc do là kiểu String
+      
+        public string MetaDesc { get; set; }//bắt buộc do là kiểu String
 
-        [Required]
-        public int MetaKey { get; set; }//bắt buộc do là kiểu String
+        
+        public string MetaKey { get; set; }//bắt buộc do là kiểu String
 
-        public int CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
+        public int? CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
 
-        public DateTime CreatedAt { get; set; }//bắt buộc khi khởi tạo
+        public DateTime? CreatedAt { get; set; }//bắt buộc khi khởi tạo
 
         public int? UpdateBy { get; set; }//không bắt buộc
 
         public DateTime? UpdateAt { get; set; }//không bắt buộc khi cập nhật
 
-        public int Status { get; set; }//bắt buộc
+        public int? Status { get; set; }//bắt buộc
     }
 }

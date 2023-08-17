@@ -24,6 +24,8 @@ namespace MyClass.Models
         [Required]
         public string Name { get; set; } //bắt buộc phải có tên cho sản phẩm
 
+        public string Supplier { get; set; } //
+        
         public string Slug { get; set; }//không bắt buộc do Slug được sinh ra từ name
 
         [Required]

@@ -11,22 +11,27 @@ namespace MyClass.DAO
     public class LinkDAO
     {
         private MyDBContext db = new MyDBContext();
-        //
+
+        //Lay mot mau tin
+        public Link getRow(int tableid, string typelink)
+        {
+            return db.Links.Where(m => m.TableId == tableid && m.Type == typelink).FirstOrDefault();
+        }
         //Một số hàm khác
         //
 
-        //trả về 1 mẫu tin
-        public Link getRow(int? id)
-        {
-            if (id == null)
-            {
-                return null;
-            }
-            else
-            {
-                return db.Links.Find(id);
-            }
-        }
+        ////trả về 1 mẫu tin (bổ sung)
+        //public Link getRow(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        return db.Links.Find(id);
+        //    }
+        //}
 
         //thêm vào mẫu tin
         public int Insert(Link row)
