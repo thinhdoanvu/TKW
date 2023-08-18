@@ -24,6 +24,12 @@ namespace MyClass.Models
         [StringLength(200)]
         public string Name { get; set; }//bắt buộc
 
+        public int? TableId { get; set; }//moi them
+
+        public string TypeMenu { get; set; }//moi them
+
+        public string Position { get; set; }//moi them
+
         public string Link { get; set; }//bắt buộc do cần biết  link tới menu nào
 
         public int? ParentId { get; set; }//không bắt buộc, do lấy từ ID cấp cha
