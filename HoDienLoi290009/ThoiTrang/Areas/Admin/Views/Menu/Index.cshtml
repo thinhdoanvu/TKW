@@ -34,7 +34,7 @@
                             <strong class="text-danger text-uppercase">DANH MỤC MENU</strong>
                         </div>
                         <div class="col-md-6 text-right">
-                            LINK
+                            <a href="@Url.Action("Trash", "Menu")" class="btn-sm btn-danger"> <i class="fa fa-trash"></i></a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="accordion" id="accordionExample">
-
+                                @*--------------------------------*@
                                 <div class="card">
                                     @*header, vị trí*@
                                     <div class="card-header" id="headingPosition">
@@ -67,11 +67,11 @@
 
                                     @*Mục con cho các loại sản phẩm*@
                                     <div id="collapseCategory" class="collapse p-2 m-2" aria-labelledby="headingCategory" data-parent="#accordionExample">
-                                        @foreach (var row in ViewBag.ListCategory)
+                                        @foreach (var cat in ViewBag.ListCategory)
                                         {
                                             <fieldset class="form-group">
-                                                <input name="nameCategory" value="@row.Id" id="category_@row.Id" type="checkbox" />
-                                                <label for="category_@row.Id">@row.Name</label>
+                                                <input name="nameCategory" value="@cat.Id" id="category_@cat.Id" type="checkbox" />
+                                                <label for="category_@cat.Id">@cat.Name</label>
                                             </fieldset>
                                         }
 
@@ -91,12 +91,18 @@
                                     </div>
 
                                     @*Mục con cho các chủ đề bài viết*@
-                                    <div id="collapseTopic" class="collapse p-2 m-2" aria-labelledby="headingPost" data-parent="#accordionExample">
-
+                                <div id="collapseTopic" class="collapse p-2 m-2" aria-labelledby="headingPost" data-parent="#accordionExample">
+                                    @foreach (var topic in ViewBag.ListTopic)
+                                    {
                                         <fieldset class="form-group">
-                                            <input type="submit" name="ThemPost" value="Thêm" class="buttons btn-success form-control" />
+                                            <input name="nameTopic" value="@topic.Id" id="topic_@topic.Id" type="checkbox" />
+                                            <label for="topic_@topic.Id">@topic.Name</label>
                                         </fieldset>
-                                    </div>
+                                    }
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemTopic" value="Thêm" class="buttons btn-success form-control" />
+                                    </fieldset>
+                                </div>
                                 </div>
 
                                 @*header, Trang đơn*@
@@ -109,12 +115,18 @@
                                     </div>
 
                                     @*Mục con cho các trang bài viết*@
-                                    <div id="collapsePage" class="collapse p-2 m-2" aria-labelledby="headingPage" data-parent="#accordionExample">
-
+                                <div id="collapsePage" class="collapse p-2 m-2" aria-labelledby="headingPage" data-parent="#accordionExample">
+                                    @foreach (var page in ViewBag.ListPage)//tu phia controller
+                                    {
                                         <fieldset class="form-group">
-                                            <input type="submit" name="ThemPage" value="Thêm" class="buttons btn-success form-control" />
+                                            <input name="namePage" value="@page.Id" id="topic_@page.Id" type="checkbox" />
+                                            <label for="topic_@page.Id">@page.Title</label>
                                         </fieldset>
-                                    </div>
+                                    }
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemPage" value="Thêm" class="buttons btn-success form-control" />
+                                    </fieldset>
+                                </div>
                                 </div>
 
 
@@ -128,13 +140,21 @@
                                     </div>
 
                                     @*Mục con cho các tùy chọn menu*@
-                                    <div id="collapseCustom" class="collapse p-2 m-2" aria-labelledby="headingCustom" data-parent="#accordionExample">
+                                <div id="collapseCustom" class="collapse p-2 m-2" aria-labelledby="headingCustom" data-parent="#accordionExample">
+                                    <fieldset class="form-group">
+                                        <label>Tên Menu</label>
+                                        <input type="text" name="name" class="form-control" id="checkid" />
+                                    </fieldset>
 
+                                    <fieldset class="form-group">
+                                        <label>Liên kết</label>
+                                        <input type="text" name="link" class="form-control" />
+                                    </fieldset>
 
-                                        <fieldset class="form-group">
-                                            <input type="submit" name="ThemCustom" value="Thêm" class="buttons btn-success form-control" />
-                                        </fieldset>
-                                    </div>
+                                    <fieldset class="form-group">
+                                        <input type="submit" name="ThemCustom" value="Thêm" class="buttons btn-success form-control" />
+                                    </fieldset>
+                                </div>
                                 </div>
 
                             </div>

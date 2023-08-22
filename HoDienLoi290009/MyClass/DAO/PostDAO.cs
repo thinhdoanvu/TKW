@@ -12,21 +12,21 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
         //trả về danh sách các mẫu tin
-        public List<Post> getList(string status = "All")
+        public List<Post> getList(string status = "All", string type = "post")
         {
             if (status == "All")
             {
-                return db.Posts.ToList();//Select * from Category
+                return db.Posts.Where(m=>m.PostType == type).ToList();//Select * from Category
             }
             else
             {
                 if (status == "Index")//lay  ra những mẫu tin có trạng thái khác 0
                 {
-                    return db.Posts.Where(m => m.Status != 0).ToList();
+                    return db.Posts.Where(m => m.Status != 0 && m.PostType == type).ToList();
                 }
                 if (status == "Trash")//lay  ra những mẫu tin có trạng thái khác 0
                 {
-                    return db.Posts.Where(m => m.Status == 0).ToList();
+                    return db.Posts.Where(m => m.Status == 0 && m.PostType == type).ToList();
                 }
             }
             return db.Posts.ToList();

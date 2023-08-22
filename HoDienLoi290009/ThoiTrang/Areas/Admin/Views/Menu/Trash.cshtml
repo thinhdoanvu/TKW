@@ -1,11 +1,11 @@
-﻿@model IEnumerable<MyClass.Models.Post>
+﻿@model IEnumerable<MyClass.Models.Menu>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trash";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Trash</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,28 +13,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TopID)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.TableId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Slug)
+            @Html.DisplayNameFor(model => model.TypeMenu)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Detail)
+            @Html.DisplayNameFor(model => model.Position)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Image)
+            @Html.DisplayNameFor(model => model.Link)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PostType)
+            @Html.DisplayNameFor(model => model.ParentId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MetaDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MetaKey)
+            @Html.DisplayNameFor(model => model.Order)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedBy)
@@ -57,28 +54,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TopID)
+            @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.TableId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Slug)
+            @Html.DisplayFor(modelItem => item.TypeMenu)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Detail)
+            @Html.DisplayFor(modelItem => item.Position)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            @Html.DisplayFor(modelItem => item.Link)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PostType)
+            @Html.DisplayFor(modelItem => item.ParentId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MetaDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MetaKey)
+            @Html.DisplayFor(modelItem => item.Order)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedBy)

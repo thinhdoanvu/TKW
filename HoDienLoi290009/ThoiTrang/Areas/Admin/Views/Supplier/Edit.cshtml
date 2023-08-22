@@ -1,11 +1,11 @@
-﻿@model MyClass.Models.Supplier
+﻿﻿@model MyClass.Models.Supplier
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Supplier", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Supplier", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <!-- Content Wrapper. Contains page content -->
@@ -104,4 +104,3 @@
     </div>
     <!-- /.content-wrapper -->
 }
-

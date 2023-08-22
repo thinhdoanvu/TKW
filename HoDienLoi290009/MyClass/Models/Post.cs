@@ -20,28 +20,31 @@ namespace MyClass.Models
         [Key]
         public int Id { get; set; }
 
+
         public int? TopID { get; set; }//không bắt buộc
 
         [Required]
         public String Title { get; set; }//bắt buộc phải có tiêu đề cho bài viết
 
-        [Required]
-        public string Detail { get; set; }//bắt buộc do Slug được sinh ra từ name
+        public String Slug { get; set; }//bo sung chu tu dau khong co
+
+
+       public string Detail { get; set; }//bắt buộc do Slug được sinh ra từ name
 
         public string Image { get; set; }//không bắt buộc, do lấy từ ID cấp cha
 
-        [Required]
+       
         public string PostType { get; set; }//bắt buộc để viết trang đơn hay???
 
         [Required]
-        public int MetaDesc { get; set; }//bắt buộc do là kiểu String
+        public String MetaDesc { get; set; }//bắt buộc do là kiểu String
 
         [Required]
-        public int MetaKey { get; set; }//bắt buộc do là kiểu String
+        public String MetaKey { get; set; }//bắt buộc do là kiểu String
 
         public int CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
 
-        public DateTime CreatedAt { get; set; }//bắt buộc khi khởi tạo
+        public DateTime? CreatedAt { get; set; }//bắt buộc khi khởi tạo
 
         public int? UpdateBy { get; set; }//không bắt buộc
 

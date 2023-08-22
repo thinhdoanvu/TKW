@@ -7,17 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyClass.Models;
+using MyClass.DAO;
+using ThoiTrang.Library;
 
 namespace ThoiTrang.Areas.Admin.Controllers
 {
     public class PostController : Controller
     {
-        private MyDBContext db = new MyDBContext();
-
+        private PostDAO postDAO = new PostDAO();
+        private TopicDAO topicDAO = new TopicDAO();
         // GET: Admin/Post
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            return View(postDAO.getList("Index","Post"));
         }
 
         // GET: Admin/Post/Details/5
@@ -27,7 +29,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postDAO.getRow(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -38,23 +40,25 @@ namespace ThoiTrang.Areas.Admin.Controllers
         // GET: Admin/Post/Create
         public ActionResult Create()
         {
+            ViewBag.ListTopic = new SelectList(topicDAO.getList("Index"), "Id", "Name", 0);
             return View();
         }
 
-        // POST: Admin/Post/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TopID,Title,Detail,Image,PostType,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Post post)
+        public ActionResult Create(Post post)
         {
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
+                post.PostType = "Post";//gán Type post = Post mặc định chứ ko cần chọn
+                //Xử lý thêm thông tin tự động
+                post.Slug = Xstring.Str_Slug(post.Title);
+                post.CreatedBy = Convert.ToInt32(Session["UserId"].ToString());
+                post.CreatedAt = DateTime.Now;
+                postDAO.Insert(post);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.ListTopic = new SelectList(topicDAO.getList("Index"), "Id", "Name", 0);
             return View(post);
         }
 
@@ -65,27 +69,30 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postDAO.getRow(id);
             if (post == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ListTopic = new SelectList(topicDAO.getList("Index"), "Id", "Name", 0);
             return View(post);
         }
 
-        // POST: Admin/Post/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TopID,Title,Detail,Image,PostType,MetaDesc,MetaKey,CreatedBy,CreatedAt,UpdateBy,UpdateAt,Status")] Post post)
+        public ActionResult Edit(Post post)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
+                post.PostType = "Post";//gán Type post = Post mặc định chứ ko cần chọn
+                post.Slug = Xstring.Str_Slug(post.Title);
+                post.UpdateBy = Convert.ToInt32(Session["UserId"].ToString());
+                post.UpdateAt = DateTime.Now;
+                postDAO.Update(post);
                 return RedirectToAction("Index");
             }
+            ViewBag.ListTopic = new SelectList(topicDAO.getList("Index"), "Id", "Name", 0);
             return View(post);
         }
 
@@ -96,7 +103,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postDAO.getRow(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -109,19 +116,10 @@ namespace ThoiTrang.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Posts.Find(id);
-            db.Posts.Remove(post);
-            db.SaveChanges();
+            Post post = postDAO.getRow(id);
+            postDAO.Delete(post);
             return RedirectToAction("Index");
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+  
     }
 }

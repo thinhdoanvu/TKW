@@ -71,7 +71,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
 
                 //xu ly cho phan upload hình ảnh
                 var img = Request.Files["img"];//lay thong tin file
-                if (img.ContentLength !=0)
+                if (img.ContentLength != 0)
                 {
                     string[] FileExtentions = new string[] { ".jpg", ".jpeg", ".png", ".gif" };
                     //kiem tra tap tin co hay khong
@@ -83,7 +83,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
                         supplier.Img = imgName;
                         //upload hinh
                         string PathDir = "~/Public/images/suppliers/";
-                        string PathFile = Path.Combine(Server.MapPath(PathDir),imgName);
+                        string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
                         img.SaveAs(PathFile);
                     }
                 }//ket thuc phan upload hinh anh
@@ -138,7 +138,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
 
                 //them phan nay vao 16-8-2023 chu truoc day khong co
                 supplier.Slug = Xstring.Str_Slug(supplier.Name);
-                
+
                 if (supplier.Order == null)
                 {
                     supplier.Order = 1;
@@ -165,7 +165,7 @@ namespace ThoiTrang.Areas.Admin.Controllers
                         string PathFile = Path.Combine(Server.MapPath(PathDir), imgName);
                         //cap nhat thi phai xoa file cu
                         //Xoa file
-                        if (supplier.Img !=null)
+                        if (supplier.Img != null)
                         {
                             string DelPath = Path.Combine(Server.MapPath(PathDir), supplier.Img);
                             System.IO.File.Delete(DelPath);
