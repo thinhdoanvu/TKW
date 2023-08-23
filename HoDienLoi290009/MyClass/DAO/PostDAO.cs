@@ -16,7 +16,7 @@ namespace MyClass.DAO
         {
             if (status == "All")
             {
-                return db.Posts.Where(m=>m.PostType == type).ToList();//Select * from Category
+                return db.Posts.Where(m => m.PostType == type).ToList();//Select * from Category
             }
             else
             {
@@ -43,6 +43,13 @@ namespace MyClass.DAO
             {
                 return db.Posts.Find(id);
             }
+        }
+
+        //bo sung cho phan menu
+        public Post getRow(string slug)
+        {
+            return db.Posts.Where(m=> m.PostType == "post" && m.Slug == slug && m.Status ==1).FirstOrDefault();
+
         }
 
         //thêm vào mẫu tin

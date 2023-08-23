@@ -12,8 +12,15 @@ namespace MyClass.DAO
     {
          private MyDBContext db = new MyDBContext();
 
-        //trả về danh sách các mẫu tin
-        public List<Menu> getList(string status = "All")
+        public List<Menu> getListByParentId(string position, int parentid=0)
+        {
+            return db.Menus.Where(m=>m.ParentId == parentid && m.Status == 1 && m.Position == position)
+                .OrderBy(m=>m.Order)
+                .ToList();//Select * from Category
+        }
+
+            //trả về danh sách tat ca các mẫu tin
+            public List<Menu> getList(string status = "All")
         {
             if (status == "All")
             {

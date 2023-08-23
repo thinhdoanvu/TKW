@@ -45,6 +45,12 @@ namespace MyClass.DAO
             }
         }
 
+        //bo sung cho phan Menu
+        public Product getRow(string slug)
+        {
+            return db.Products.Where(m=>m.Slug == slug && m.Status == 1).FirstOrDefault();
+        }
+
         //thêm vào mẫu tin
         public int Insert(Product row)
         {

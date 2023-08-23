@@ -12,7 +12,23 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
+        public List<Link> getList()
+        {
+            return db.Links.ToList();
+        }
+
         //Lay mot mau tin
+        public Link getRow(int? id)
+        {
+            return db.Links.Find(id);
+        }
+
+        //bo sung khi thiet lap URL tuy bien
+        public Link getRow(string slug)
+        {
+            return db.Links.Where(m=>m.Slug == slug).FirstOrDefault();
+        }
+
         public Link getRow(int tableid, string typelink)
         {
             return db.Links.Where(m => m.TableId == tableid && m.Type == typelink).FirstOrDefault();
