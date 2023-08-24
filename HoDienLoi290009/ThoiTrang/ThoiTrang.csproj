@@ -2842,6 +2842,7 @@
     <Content Include="Views\Module\MainMenuSub1.cshtml" />
     <Content Include="Views\Module\MainMenuSub2.cshtml" />
     <Content Include="Views\Module\SlideShow.cshtml" />
+    <Content Include="Views\Site\HomeProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

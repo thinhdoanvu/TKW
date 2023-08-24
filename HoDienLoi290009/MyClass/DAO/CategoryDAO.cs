@@ -12,6 +12,14 @@ namespace MyClass.DAO
     {
         private MyDBContext db = new MyDBContext();
 
+        public List<Category> getListBypararentId(int parentid)
+        {
+            List < Category > list = db.Categorys.Where(m=>m.ParentId == parentid && m.Status==1)//status=1 la hien thi, 2=da xoa
+                .OrderBy(m=>m.Order)
+                .ToList();
+            return list;
+        }
+
         //trả về danh sách các mẫu tin
         public List<Category> getList(string status = "All")
         {

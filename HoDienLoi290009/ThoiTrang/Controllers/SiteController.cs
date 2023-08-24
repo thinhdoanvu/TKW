@@ -14,6 +14,7 @@ namespace ThoiTrang.Controllers
         LinkDAO linkDAO = new LinkDAO();
         ProductDAO productDAO = new ProductDAO();
         PostDAO postDAO = new PostDAO();
+        CategoryDAO categoryDAO = new CategoryDAO();
 
         // URL mặc định hoặc bất kỳ
         public ActionResult Index(string slug = null)
@@ -80,10 +81,21 @@ namespace ThoiTrang.Controllers
 
         //Khai báo URL cố định
 
-        //Home
+        //TRANG HOME
         public ActionResult Home()
         {
-            return View("Home");
+            List<Category> list = categoryDAO.getListBypararentId(0);//parent ID=0
+            return View("Home",list);
+        }
+
+        //TRANG HOME PRODUCT
+        public ActionResult HomeProduct(int id)
+        {
+            Category category = categoryDAO.getRow(id);
+            ViewBag.Category = category;
+            //lay ra danh sach cac sản phẩm
+            List<Product> list = productDAO.getListByCatId(id,4);//Do tim theo ID cua Cater, gioi hạn so mau tin cho dep
+            return View("HomeProduct",list);
         }
 
         //Nhom action lien quan den san pham

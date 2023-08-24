@@ -73,6 +73,7 @@
     <Compile Include="Models\Orderdetail.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductInfo.cs" />
     <Compile Include="Models\Slider.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Topic.cs" />

@@ -42,5 +42,7 @@ namespace ThoiTrang.Controllers
             List<Slider> list = sliderDAO.getListByPosition("slideshow");//ten ham dat t uy y theo chuc nang
             return View("SlideShow",list);
         }
+
+        //
     }
 }
