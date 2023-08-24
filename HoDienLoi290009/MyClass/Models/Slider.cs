@@ -23,16 +23,19 @@ namespace MyClass.Models
         [Required]
         public string Name { get; set; }//bắt buộc
 
-        [Required]
+       
         public string Url { get; set; }//bắt buộc, link tới hình
 
         public string Img { get; set; }//bắt buộc, link tới hình
 
         public int? Order { get; set; }//không bắt buộc để sắp xếp danh mục sản phẩm
-       
-        public int CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
 
-        public DateTime CreatedAt { get; set; }//bắt buộc khi khởi tạo
+        public string Position { get; set; }//không bắt buộc để sắp xếp danh mục sản phẩm
+
+
+        public int? CreatedBy { get; set; }//bắt buộc, tạo bới ai không có [Required] vì kiểu int
+
+        public DateTime? CreatedAt { get; set; }//bắt buộc khi khởi tạo
 
         public int? UpdateBy { get; set; }//không bắt buộc
 

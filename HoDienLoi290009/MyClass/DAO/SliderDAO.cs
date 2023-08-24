@@ -11,6 +11,15 @@ namespace MyClass.DAO
     public class SliderDAO
     {
         private MyDBContext db = new MyDBContext();
+
+        //trả về 1 mẫu tin co dieu kien
+        public List<Slider> getListByPosition(string position)
+        {
+            return db.Sliders.Where(m=> m.Position == position && m.Status == 1)
+                .OrderBy(m=>m.CreatedAt)
+                .ToList();
+        }
+
         //trả về danh sách các mẫu tin
         public List<Slider> getList(string status = "All")
         {
@@ -45,6 +54,7 @@ namespace MyClass.DAO
             }
         }
 
+  
         //thêm vào mẫu tin
         public int Insert(Slider row)
         {

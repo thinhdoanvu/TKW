@@ -11,6 +11,8 @@ namespace ThoiTrang.Controllers
     public class ModuleController : Controller
     {
         private MenuDAO menuDAO = new MenuDAO();
+        private SliderDAO sliderDAO = new SliderDAO();
+
         // GET: Module
         public ActionResult MainMenu()
         {
@@ -32,6 +34,13 @@ namespace ThoiTrang.Controllers
                 return View("MainMenuSub2", list);
             }
             
+        }
+
+        //SLIDE SHOW
+        public ActionResult SlideShow()
+        {
+            List<Slider> list = sliderDAO.getListByPosition("slideshow");//ten ham dat t uy y theo chuc nang
+            return View("SlideShow",list);
         }
     }
 }
